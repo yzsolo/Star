@@ -3,11 +3,10 @@ window.onload = function () {
 	can.width = window.innerWidth;
 	can.height = window.innerHeight;
 	var con = can.getContext('2d');
-	con.fillStyle = '#fff';
-	con.strokeStyle = '#fff';
-	con.lineWidth = 4;
-	con.arc(100,100,2,0,2*Math.PI);
-	con.stroke();
+
+	for (var i = 0;i<7;i++) {
+		draw(con);
+	}
 
 	var x_f = 1,
 		y_f = 1,
@@ -38,15 +37,16 @@ window.onload = function () {
 		con.stroke();
 
 			}
-	// var a_f = 0.1;
-	// var a_f = setInterval(function() {
-	// 	if(con.globalAlpha==1) {
-	// 		a_f = -0.1;
-	// 	}else if (con.globalAlpha==0) {
-	// 		a_f = 0.1;
-	// 	}
-	// 	con.globalAlpha = con.globalAlpha + a_f;
-	// 	console.log(con.globalAlpha);
-	// },1000)
 	setInterval(move,50);
+
+	function draw (con) {
+		con.beginPath();
+		x = (window.innerWidth-5)*Math.random();
+		y = (window.innerHeight-5)*Math.random();
+		con.fillStyle = '#fff';
+		con.strokeStyle = '#fff';
+		con.lineWidth = 4;
+		con.arc(x,y,2,0,2*Math.PI);
+		con.stroke();
+	}
 }
