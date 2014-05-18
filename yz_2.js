@@ -1,3 +1,10 @@
+/*
+* @intro: easy life that I wish
+* @time: 2014.5.18
+* @by aresy.z
+*/
+
+
 window.onload = function () {
 	var can = document.getElementById('yz_canvas');
 	can.width = window.innerWidth;

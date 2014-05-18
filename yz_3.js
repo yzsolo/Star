@@ -1,3 +1,11 @@
+/*
+* @intro: shine like star
+* @time: 2014.5.18
+* @by aresy.z
+* @state: Wait to finish
+*/
+
+
 window.onload = function () {
 	var can = document.getElementById('yz_canvas');
 	can.width = window.innerWidth;
@@ -35,16 +43,12 @@ window.onload = function () {
 			this.con.lineWidth = 2;
 			this.con.arc(init.x,init.y,1,0,2*Math.PI);
 			this.con.stroke();
-			var option = {
-				x: init.x,
-				y: init.y,
-				x_s: init.x_s,
-				y_s: init.y_s,
-				x_f: init.x_f,
-				y_f: init.y_f,
-				line_width: init.line_width
-			}
-			return option;
+		},
+		shine : function () {
+			var flag = Math.round(Math.random());
+			// setInterval(function() {
+			// 	this.con.globalAlpha ＝ (flag==1?0:1);
+			// },1000);
 		}
 	}
 	var star = [];
@@ -53,6 +57,10 @@ window.onload = function () {
 
 		star[i] = new Star();
 		star[i].draw();
+		star[i].shine();
 
-	}	
+	}
 }
+
+
+
