@@ -1,5 +1,5 @@
 /*
-* @intro: easy life that I wish
+* @intro: star in my mind
 * @time: 2014.5.18
 * @by aresy.z
 */
@@ -12,8 +12,9 @@ window.onload = function () {
 	var con = can.getContext('2d');
 
 	var Circle = function () {
-		this.con = con;
+		
 	}
+	
 	Circle.prototype = {
 
 		init : function() {
@@ -22,8 +23,8 @@ window.onload = function () {
 			line_width = 2,
 			x = (window.innerWidth-5)*Math.random(),
 			y = (window.innerHeight-5)*Math.random(),
-			x_s = Math.random()*1,
-			y_s = Math.random()*1;
+			x_s = Math.random()*1/2,
+			y_s = Math.random()*1/2;
 			return {
 				x: x,
 				y: y,
@@ -36,12 +37,12 @@ window.onload = function () {
 		},
 		draw : function () {
 			var init = this.init();
-			this.con.beginPath();
-			this.con.fillStyle = '#fff';
-			this.con.strokeStyle = '#fff';
-			this.con.lineWidth = 2;
-			this.con.arc(init.x,init.y,1,0,2*Math.PI);
-			this.con.stroke();
+			con.beginPath();
+			con.fillStyle = '#fff';
+			con.strokeStyle = '#fff';
+			con.lineWidth = 2;
+			con.arc(init.x,init.y,1,0,2*Math.PI);
+			con.stroke();
 			var option = {
 				x: init.x,
 				y: init.y,
@@ -58,7 +59,7 @@ window.onload = function () {
 			can.width = window.innerWidth;
 			can.height = window.innerHeight;
 			function m () {
-				// con.clearRect(0,0,can.width,can.height);
+				con.clearRect(draw.x-5,draw.y-5,10,10);
 				if(draw.x>window.innerWidth-2 || draw.x<2) {
 					draw.x_f *= -1;
 				}
@@ -76,18 +77,18 @@ window.onload = function () {
 				con.arc(draw.x,draw.y,1,0,2*Math.PI);
 				con.stroke();
 			}
-			setInterval(m,10);
+			setInterval(m,50);
 		}
 
 	}
 
 	var star = [];
 
-	for(var i=0;i<10;i++) {
+	for(var i=0;i<50;i++) {
 
 			star[i] = new Circle();
 			star[i].draw();
-			setTimeout(star[i].move(),100);	
+			setTimeout(star[i].move(),1000);	
 
 	}	
 }
