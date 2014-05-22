@@ -1,6 +1,6 @@
 body {
-	/*background:#646161;*/
 	background:#000;
+	overflow-y:hidden;
 }
 .manu {
 	width:262px;
