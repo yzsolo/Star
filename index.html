@@ -6,21 +6,24 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/yz.css">
 	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
-	<script>
+	<script src='jq.js'></script>
+
+ 	<script>
 		var _hmt = _hmt || [];
 		(function() {
 		  var hm = document.createElement("script");
 		  hm.src = "//hm.baidu.com/hm.js?83e4c7b416fbace7d58c9d38d9331e21";
 		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
+		  // s.parentNode.insertBefore(hm, s);
 		})();
 </script>
 
 	<script>
 	$(function() {
-		
+
 		$('h1').fadeIn(3000,function () {
 			$(this).css('display','block');
+			$('canvas').css('display','block');
 		})
 
 		$('.manu').hover(function(){

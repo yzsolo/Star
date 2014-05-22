@@ -10,6 +10,9 @@ body {
 	opacity:0.6;
 	background-color:#575755;
 }
+canvas {
+	display:none;
+}
 .manu span {
 	color:#fff;
 	margin-left: 12px;
