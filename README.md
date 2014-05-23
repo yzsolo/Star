@@ -1,8 +1,8 @@
 www_index
 =========
- canvas effect 
-               and
-                   you can see it 
+    canvas effect
+               
+                   ,you can see it 
                                   at
                                      http://aresyz.com
-                                                      ,control one of them with your ⬅ ⬆  ➡⬇                                                            :)
+                                                      ,and control one of them with your ⬅ ⬆  ➡⬇   ,  hava   fun                                            :)
