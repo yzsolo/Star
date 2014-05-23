@@ -5,5 +5,4 @@ www_index
                    you can see it 
                                   at
                                      http://aresyz.com
-                                                      ,control one of them with your   ⬅️⬆ h➡️ ⬇️aun. 
-                                                                 :)
+                                                      ,control one of them with your ⬅ ⬆  ➡⬇                                                            :)
