@@ -6,6 +6,7 @@ body {
 	width:262px;
 	height:34px;
 	position:absolute;
+	text-align:center;
 	top:-24px;
 	opacity:0.6;
 	background-color:#575755;
