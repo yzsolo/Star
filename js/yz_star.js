@@ -13,7 +13,7 @@ window.onload = function () {
 	var con = can.getContext('2d');
 	var x,y,x_s,y_s,x_f=1,y_f=1,stars = [],line_width=0.1,star_num=30;
 
-	for (var i = 0; i < star_num; i ++) {
+	for (var i = 0; i < star_num; i++) {
 		x = (window.innerWidth-5)*Math.random(),
 		y = (window.innerHeight-5)*Math.random(),
 		x_s = Math.random()*1/2-0.2,
@@ -51,9 +51,10 @@ window.onload = function () {
 		con.lineWidth = line_width;
   		con.strokeStyle = '#fff';
 
-  		for (var k = 0; k < star_num; k ++) {		
-  			for (var n = 0; n < star_num; n ++) {
+  		for (var k = 0; k < star_num; k++) {		
+  			for (var n = 0; n < star_num; n++) {
   				con.beginPath();
+  				// con.strokeStyle = random_color();
   				con.moveTo(stars[k].x,stars[k].y);
   				con.lineTo(stars[n].x,stars[n].y);
   				con.stroke();
@@ -62,13 +63,27 @@ window.onload = function () {
   		}
 	}
 
-	function star_control (j) {
+	// function random_color() {
+	// 	var start = new Date() - 0;
+	// 	var arr = [];
+	// 	for (var i = 0; i < 6; i++) {
+	// 		var c = Math.round(Math.random()*16).toString(16);
+	// 		arr.push(c);
+	// 	}
+	// 	arr.unshift('#');
+	// 	var end = new Date() - 0;
+	// 	console.log(end - start);
+	// 	return arr.join('');
+
+	// }
+
+	
+	function star_control(j) {
 		if (j != 0) {
 			stars[j].x += stars[j].x_s * stars[j].x_f;
 			stars[j].y += stars[j].y_s * stars[j].y_f;
 		}
-		window.onkeydown = function () {
-			console.log(event.keyCode);
+		window.onkeydown = function() {
 			switch (event.keyCode) {
 				case 37 :
 					if (stars[0].x <= 0) {
@@ -104,12 +119,21 @@ window.onload = function () {
 		}
 	}
 
-	function draw () {
+	// window.onmousemove = function() {
+	// 	console.log(event.clientX);
+	// 	for (var o = 0; o < star_num; o++) {
+	// 		if (10 < event.clientX < 100) { 
+	// 			console.log(o);
+	// 		}
+	// 	}
+	// }
+
+	function draw() {
 		can.width = window.innerWidth;
 		can.height = window.innerHeight;
 		con.clearRect(0,0,can.width,can.height);
 
-		for (var j = 0; j < star_num; j ++) {
+		for (var j = 0; j < star_num; j++) {
 			
 			draw_circle(j);
 			
@@ -121,7 +145,7 @@ window.onload = function () {
 		draw_line();
 	}
 
-	function drawLoop () {
+	function drawLoop() {
 		setTimeout(drawLoop,50);
 		draw();
 	}
