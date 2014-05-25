@@ -6,7 +6,7 @@
 
 
 window.onload = function () {
-	var star = [];
+	var star = [], copy = [];
 	var can = document.getElementById('yz_canvas');
 	can.width = window.innerWidth;
 	can.height = window.innerHeight;
@@ -18,20 +18,29 @@ window.onload = function () {
 		y = (window.innerHeight-5)*Math.random(),
 		x_s = Math.random()*1/2-0.2,
 		y_s = Math.random()*1/2-0.2;
-		option = {
+		// x_s = 0.1,
+		// y_s =0.1;
+		var option = {
 			x:x,
 			y:y,
 			x_s:x_s,
 			y_s:y_s,
 			x_f:x_f,
-			y_f:y_f
+			y_f:y_f,
+			fillStyle:'#fff'
+		};
+		var copy_option = {
+			x_s:x_s,
+			y_s:y_s
 		}
+
 		stars.push(option);
+		copy.push(copy_option);
 	}
 
 	function draw_circle (j) {
 		con.beginPath();
-		con.fillStyle = '#fff';
+		con.fillStyle = stars[j].fillStyle;
 		con.arc(stars[j].x,stars[j].y,2.5,0,2 * Math.PI);
 		con.closePath();
 		con.fill();
@@ -62,55 +71,38 @@ window.onload = function () {
   			}
   		}
 	}
-
-	// function random_color() {
-	// 	var start = new Date() - 0;
-	// 	var arr = [];
-	// 	for (var i = 0; i < 6; i++) {
-	// 		var c = Math.round(Math.random()*16).toString(16);
-	// 		arr.push(c);
-	// 	}
-	// 	arr.unshift('#');
-	// 	var end = new Date() - 0;
-	// 	console.log(end - start);
-	// 	return arr.join('');
-
-	// }
-
 	
-	function star_control(j) {
-		if (j != 0) {
+	function star_control(j,flag) {
 			stars[j].x += stars[j].x_s * stars[j].x_f;
 			stars[j].y += stars[j].y_s * stars[j].y_f;
-		}
 		window.onkeydown = function() {
 			switch (event.keyCode) {
 				case 37 :
-					if (stars[0].x <= 0) {
+					if (stars[flag].x <= 0) {
 						return false;
 					} else {
-						stars[0].x -= 10;
+						stars[flag].x -= 10;
 					}
 					break;
 				case 38 :
-					if (stars[0].y <= 0) {
+					if (stars[flag].y <= 0) {
 						return false;
 					} else {
-						stars[0].y -= 10;
+						stars[flag].y -= 10;
 					}
 					break;
 				case 39 :
-					if (stars[0].x >= can.width) {
+					if (stars[flag].x >= can.width) {
 						return false;
 					} else {
-						stars[0].x += 10;
+						stars[flag].x += 10;
 					}
 					break;
 				case 40 :
-					if (stars[0].y >= can.height) {
+					if (stars[flag].y >= can.height) {
 						return false;
 					} else {
-						stars[0].y += 10;
+						stars[flag].y += 10;
 					}
 					break;
 				default :
@@ -119,27 +111,45 @@ window.onload = function () {
 		}
 	}
 
-	// window.onmousemove = function() {
-	// 	console.log(event.clientX);
-	// 	for (var o = 0; o < star_num; o++) {
-	// 		if (10 < event.clientX < 100) { 
-	// 			console.log(o);
-	// 		}
-	// 	}
-	// }
+	var flag = 0;
+	
+	window.onmousemove = function() {
+		for (var o = 0; o < star_num; o++) {
 
-	function draw() {
+			if (stars[o].x - 10 < event.clientX && stars[o].x + 10 > event.clientX) { 
+				if (stars[o].y - 10 < event.clientY && stars[o].y + 10 > event.clientY) {
+					stars[o].fillStyle = 'blue';
+ 					stars[o].x_s *= 0;
+					stars[o].y_s *= 0;
+					flag = o;
+				}
+			}
+			if ((stars[o].x - 10 > event.clientX) || (stars[o].x + 10 < event.clientX)) {
+			    if ((stars[o].y - 10 > event.clientY) || (stars[o].y + 10 < event.clientY)) {
+					if ((stars[o].x - event.clientX <30) || (stars[o].x - event.clientX > -30)) {
+						if ((stars[o].y - event.clientY <30) || (stars[o].y - event.clientY > -30)) { 
+							stars[o].fillStyle = '#fff';
+						    stars[o].x_s = copy[o].x_s;
+							stars[o].y_s = copy[o].y_s;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	function draw(flag) {
 		can.width = window.innerWidth;
 		can.height = window.innerHeight;
 		con.clearRect(0,0,can.width,can.height);
 
 		for (var j = 0; j < star_num; j++) {
-			
+
 			draw_circle(j);
 			
 			boundary_check(j);
 			
-			star_control(j);
+			star_control(j,flag);
 		}
 
 		draw_line();
@@ -147,7 +157,7 @@ window.onload = function () {
 
 	function drawLoop() {
 		setTimeout(drawLoop,50);
-		draw();
+		draw(flag);
 	}
 
 	drawLoop();
