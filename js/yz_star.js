@@ -18,6 +18,7 @@ window.onload = function () {
 		y = (window.innerHeight-5)*Math.random(),
 		x_s = Math.random()*1/2-0.2,
 		y_s = Math.random()*1/2-0.2;
+		radius = Math.round(Math.random()*2)+1.5
 		// x_s = 0.1,
 		// y_s =0.1;
 		var option = {
@@ -27,6 +28,7 @@ window.onload = function () {
 			y_s:y_s,
 			x_f:x_f,
 			y_f:y_f,
+			radius:radius,
 			fillStyle:'#fff'
 		};
 		var copy_option = {
@@ -41,7 +43,7 @@ window.onload = function () {
 	function draw_circle (j) {
 		con.beginPath();
 		con.fillStyle = stars[j].fillStyle;
-		con.arc(stars[j].x,stars[j].y,2.5,0,2 * Math.PI);
+		con.arc(stars[j].x,stars[j].y,stars[j].radius,0,2 * Math.PI);
 		con.closePath();
 		con.fill();
 	}
@@ -63,7 +65,6 @@ window.onload = function () {
   		for (var k = 0; k < star_num; k++) {		
   			for (var n = 0; n < star_num; n++) {
   				con.beginPath();
-  				// con.strokeStyle = random_color();
   				con.moveTo(stars[k].x,stars[k].y);
   				con.lineTo(stars[n].x,stars[n].y);
   				con.stroke();
@@ -118,7 +119,7 @@ window.onload = function () {
 
 			if (stars[o].x - 10 < event.clientX && stars[o].x + 10 > event.clientX) { 
 				if (stars[o].y - 10 < event.clientY && stars[o].y + 10 > event.clientY) {
-					stars[o].fillStyle = 'blue';
+					stars[o].fillStyle = 'yellow';
  					stars[o].x_s *= 0;
 					stars[o].y_s *= 0;
 					flag = o;
