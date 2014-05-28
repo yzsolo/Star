@@ -1,6 +1,6 @@
-www_index
+Star: star around me
 =========
-    canvas effect: see it at http://aresyz.com,put your mouse on a star ,then you can control it with your ⬅⬆➡⬇,hava fun:) 
+canvas: see it at http://aresyz.com,put your mouse on a star ,then you can control it with your ⬅⬆➡⬇,hava fun:) 
  
 
 
